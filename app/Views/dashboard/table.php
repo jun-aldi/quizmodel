@@ -1,6 +1,11 @@
 <?=$this->extend("layout/layout_admin")?>
 
 <?=$this->section("content")?>
+<?php if (session()->getFlashdata('sukses') !='') {?>
+  <!-- <div class="alert alert-success" role="alert"> -->
+    <?= session()->getFlashdata('sukses') ?>
+  </div>
+  <?php } ?>
 <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
@@ -10,13 +15,19 @@
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="row">
-              <div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <form action="" method="get" style="flex-direction: row; align-items:center">
-              <input type="text" class="keyword" placeholder="Type here...">
-              <input type="submit" class="button button-primary" value="Cari">
-              </form>
+                <!-- <div class="col-12 ms-4"> -->
+                <div class="input-group">
+                  <form method='get' action="/dashboard/table" id="searchForm">
+                    <input type='text' name='search' value='<?= $search ?>' placeholder="Search here...">
+                    <input type='button' id='btnsearch' value='Submit' onclick='document.getElementById("searchForm").submit();'>
+                  </form>
+                </div>
+                <div class="col-12 mt-4 ms-1" >
+                    <a href="table/create" class="btn btn-success btn-rounded mb-3">Tambah Anggota</a>
+                </div>
+
             </div>
+
               </div>
               <div class="table-responsive p-0">
 
@@ -31,7 +42,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    foreach ($list as $item) {
+                    foreach ($users as $item) {
                     ?>
                     <tr>
                       <td>
@@ -40,13 +51,13 @@
                             <?php
                               if (!$item['avatar']){
                                 ?>
-                                <img src="../assets/img/default-pp.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                <img src="<?= base_url() ?>/assets/img/default-pp.jpg" class="avatar avatar-sm me-3" alt="user1">
                                 
                               <?php
                               }
                               else {
                               ?>
-                              <img src="../assets/img/<?= $item['avatar']?>" class="avatar avatar-sm me-3" alt="user1">
+                              <img src="<?= base_url() ?>/assets/img/photo-profile/<?= $item['avatar']?>" class="avatar avatar-sm me-3" alt="user1">
                               <?php
                               }
                             ?>
@@ -73,7 +84,7 @@
                   </tbody>
                 </table>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>

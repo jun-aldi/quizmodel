@@ -35,10 +35,21 @@ $routes->get('/home', 'Home::index');
 $routes->get('/about', 'About::index', ['as'=>'about']);
 
 //roue dashboard admin
-$routes->get('/dashboard', 'Admin/Dashboard::index');
-$routes->get('/dashboard/table', 'Admin/Table::index');
-$routes->get('/dashboard/billing', 'Admin/Billing::index');
+$routes->get('/dashboard', 'Dashboard/Dashboard::index');
+
+$routes->get('/dashboard/billing', 'Dashboard/Billing::index');
+
+$routes->get('/dashboard/userdatatables', 'Dashboard/UserDatatables::index');
+
 $routes->get('/dashboard/profile/(:segment)', 'Profile::detail/$1');
+
+$routes->get('/dashboard/table', 'Dashboard/Table::loadRecord');
+
+$routes->get('/dashboard/data', 'dashboard/UserDatatables::getdata');
+
+$routes->get('/dashboard/form', 'dashboard/UserDatatables::getform');
+
+$routes->post('/dashboard/insertAjax', 'Dashboard/UserDatatables::insertAjax');
 
 /*
  * --------------------------------------------------------------------

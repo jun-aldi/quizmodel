@@ -13,13 +13,13 @@
             <?php
                 if (!$item['avatar']){
                   ?>
-                    <img src="<?= base_url() ?>/assets/img/default-pp.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    <img src="<?= base_url() ?>/assets/img/photo-profile/default-pp.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                                 
                   <?php
                       }
                       else {
                       ?>
-                        <img src="<?= base_url() ?>/assets/img/<?= $item['avatar'] ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        <img src="<?= base_url() ?>/assets/img/photo-profile/<?= $item['avatar'] ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                       <?php
                         }
                       ?>

@@ -14,10 +14,25 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+
+    protected $allowedFields = [
+        'username',
+        'nama',
+        'alamat',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'telepon',
+        'email',
+        'password',
+        'avatar',
+
+    ];
+
+
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -47,4 +62,14 @@ class UserModel extends Model
         }
         return $this->where(['username'=> $username])->first();
     }
+
+    public function user_add($data) {
+         
+        $query = $this->db->table($this->table)->insert($data);
+        
+        return $this->db->insertID();
+    }
+
+
+
 }

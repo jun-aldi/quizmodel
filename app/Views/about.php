@@ -1,49 +1,58 @@
-<?= $this->extend("layout/master")?>
-<?= $this->section("content")?>
+<?=$this->extend("layout/master")?>
+
+<?=$this->section("content")?>
+
 <section>
-
-<h1>About Page</h1>
-
-<p>This page is used to learn codeigniter 4</p>
-
-<br>
-
-<div class="row">
-    <div class="col-xl-6">
-        <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-6">
-        <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-            </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
+          <h1>GeeksForGeeks</h1>
+    
+          <table id="table">
+                <tr>
+                  <th>id</th>
+                  <th>fasilitas</th>
+                  <th>foto</th>
+                  <th>deskripsi</th>
+              </tr>
+          </table>
 </section>
-<?= $this->Endsection("content")?>
+
+<script>
+                  $(document).ready(function () {
+    
+                      // FETCHING DATA FROM JSON FILE
+                      $.getJSON("http://devel.crissad.com/api/fasilitas", 
+                              function (data) {
+                          var student = '';
+    
+                          // ITERATING THROUGH OBJECTS
+                          $.each(data, function (key, value) {
+    
+                              //CONSTRUCTION OF ROWS HAVING
+                              // DATA FROM JSON OBJECT
+                              student += '<tr>';
+                              student += '<td>' + 
+                                  value.id + '</td>';
+
+                            student += '<td>' + 
+                                  value.fasilitas + '</td>';
+
+                              student += '<td>' + '<img src="'+ value.foto +'" alt="" srcset="">'
+                                   + '</td>';
+    
+                              student += '<td>' + 
+                                  value.deskripsi + '</td>';
+    
+                              student += '</tr>';
+                          });
+                            
+                          //INSERTING ROWS INTO TABLE 
+                          $('#table').append(student);
+                      });
+                  });
+</script>
+      
+<?=$this->endSection()?>
+
+
+
+
+
